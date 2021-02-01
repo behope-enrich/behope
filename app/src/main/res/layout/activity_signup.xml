@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".signup">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/txtsignupheading"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nb"
+            android:text="Sign Up"
+            android:textColor="@color/Red"
+            android:textSize="40dp"
+            android:paddingTop="100dp"
+            android:textAlignment="center"
+            />
+
+        <TextView
+            android:id="@+id/txtusername"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nl"
+            android:text="Enter Your User Name :"
+            android:textColor="@color/black"
+            android:textSize="15dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginLeft="40dp"
+            />
+
+        <EditText
+            android:id="@+id/edtxtusername"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nl"
+            android:ems="15"
+            android:textColor="@color/black"
+            android:textSize="15dp"
+            android:inputType="text"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            />
+
+
+        <TextView
+            android:id="@+id/txtemail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nl"
+            android:text="Enter Your E-mail :"
+            android:textColor="@color/black"
+            android:textSize="15dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="40dp"
+            />
+
+        <EditText
+            android:id="@+id/edtxtemail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nl"
+            android:ems="15"
+            android:textColor="@color/black"
+            android:textSize="15dp"
+            android:inputType="textEmailAddress"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            />
+
+        <TextView
+            android:id="@+id/txtphoneno"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nl"
+            android:text="Enter Your Phone Number :"
+            android:textColor="@color/black"
+            android:textSize="15dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="40dp"
+            />
+
+        <EditText
+            android:id="@+id/edtphoneno"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nl"
+            android:ems="15"
+            android:textColor="@color/black"
+            android:textSize="15dp"
+            android:inputType="number"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            />
+
+        <TextView
+            android:id="@+id/txtpassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nl"
+            android:text="Enter Your Password :"
+            android:textColor="@color/black"
+            android:textSize="15dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="40dp"
+            />
+
+        <EditText
+            android:id="@+id/edtxtpassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nl"
+            android:ems="15"
+            android:textColor="@color/black"
+            android:textSize="15dp"
+            android:inputType="textPassword"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            />
+
+
+
+        <Button
+            android:id="@+id/btnsignup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nb"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:layout_marginTop="30dp"
+            android:text="Sign Up" />
+
+        <TextView
+            android:id="@+id/txtloginbtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nb"
+            android:text="Already Login"
+            android:textColor="@color/black"
+            android:textSize="15dp"
+            android:textAlignment="center"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            />
+
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
