@@ -21,7 +21,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="-50dp"
         android:text="Be Hope"
-        android:fontFamily=""
+        android:fontFamily="@font/nb"
         android:textColor="@color/white"
         android:textAlignment="center"
         android:textSize="25dp"
