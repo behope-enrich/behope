@@ -28,7 +28,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/nl"
-            android:text="Enter Your User Name :"
+            android:text="Enter Your Name :"
             android:textColor="@color/black"
             android:textSize="15dp"
             android:layout_marginTop="40dp"
@@ -36,7 +36,7 @@
             />
 
         <EditText
-            android:id="@+id/edtxtusername"
+            android:id="@+id/edtxtname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/nl"

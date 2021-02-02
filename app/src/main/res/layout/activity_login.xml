@@ -87,6 +87,20 @@
             android:text="Log In" />
 
         <TextView
+            android:id="@+id/txtforgetpassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nb"
+            android:text="Forget Password"
+            android:textColor="@color/blue"
+            android:textSize="12dp"
+            android:textAlignment="viewEnd"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            />
+
+        <TextView
             android:id="@+id/txtsignup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
