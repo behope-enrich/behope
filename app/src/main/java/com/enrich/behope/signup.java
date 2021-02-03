@@ -45,9 +45,19 @@ public class signup extends AppCompatActivity {
                 String phoneno = rg_phoneno.getText().toString();
                 String password = rg_password.getText().toString();
 
-                UserHelperClass helperClass = new UserHelperClass(name,email,phoneno,password);
+                Intent intent = new Intent(getApplicationContext(),VerifyPhoneNo.class);
+                intent.putExtra( "phoneno",phoneno );
+                startActivity( intent );
+                finish();
 
-                reference.child(phoneno).setValue(helperClass);
+
+
+                //UserHelperClass helperClass = new UserHelperClass(name,email,phoneno,password);
+                //reference.child(phoneno).setValue(helperClass);
+//
+//                Intent intent = new Intent(getApplicationContext(),HomeActivity.class);
+//
+//                startActivity( intent );
 
             }
         } );
