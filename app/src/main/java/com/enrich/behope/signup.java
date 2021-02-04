@@ -47,6 +47,10 @@ public class signup extends AppCompatActivity {
 
                 Intent intent = new Intent(getApplicationContext(),VerifyPhoneNo.class);
                 intent.putExtra( "phoneno",phoneno );
+                intent.putExtra( "name",name );
+                intent.putExtra( "email",email );
+                intent.putExtra( "password",password );
+
                 startActivity( intent );
                 finish();
 

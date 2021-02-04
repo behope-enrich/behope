@@ -20,6 +20,8 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthOptions;
 import com.google.firebase.auth.PhoneAuthProvider;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.concurrent.TimeUnit;
 
@@ -29,6 +31,10 @@ public class VerifyPhoneNo extends AppCompatActivity {
     EditText user_enter_verify_code;
     ProgressBar progressBar;
     String verificationCodeBySystem;
+
+    FirebaseDatabase rootNode;
+    DatabaseReference reference;
+
     private FirebaseAuth mAuth;
 
     @Override
@@ -43,6 +49,10 @@ public class VerifyPhoneNo extends AppCompatActivity {
 
 
         String phoneno = getIntent().getStringExtra( "phoneno" );
+        String name = getIntent().getStringExtra( "name" );
+        String email = getIntent().getStringExtra( "email" );
+        String password = getIntent().getStringExtra( "password" );
+
 
         sendVerificationCodeToUser(phoneno);
 
@@ -125,7 +135,21 @@ public class VerifyPhoneNo extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
 
                         if(task.isSuccessful()){
+
+                            String name = getIntent().getStringExtra( "name" );
+                            String email = getIntent().getStringExtra( "email" );
+                            String password = getIntent().getStringExtra( "password" );
+                            String phoneno = getIntent().getStringExtra( "phoneno" );
+
+                            rootNode = FirebaseDatabase.getInstance();
+                            reference = rootNode.getReference("users");
+
+                            UserHelperClass helperClass = new UserHelperClass(name,email,phoneno,password);
+
+                            reference.child(phoneno).setValue(helperClass);
+
                             Intent intent = new Intent(getApplicationContext(),HomeActivity.class);
+                            intent.putExtra( "name",name );
                             intent.setFlags( Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK );
                             startActivity( intent );
                             finish();
