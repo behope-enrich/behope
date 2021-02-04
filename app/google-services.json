@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "944997767962",
+    "firebase_url": "https://behope-enrich-default-rtdb.firebaseio.com",
+    "project_id": "behope-enrich",
+    "storage_bucket": "behope-enrich.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:944997767962:android:c73bbe760e4c017514aaa3",
+        "android_client_info": {
+          "package_name": "com.enrich.behope"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "944997767962-nmkv0ahu2srn2ek7pq98q99njr5h2rjb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.enrich.behope",
+            "certificate_hash": "2deedb2594e5f13544eb5853f14a45a6a57f7704"
+          }
+        },
+        {
+          "client_id": "944997767962-c77iqt4r6me0nljtsvrunk8fnvq7m7kv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCTQ-Z3xkPH89nCRnDQV5UcG9AOQEX73V0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "944997767962-c77iqt4r6me0nljtsvrunk8fnvq7m7kv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

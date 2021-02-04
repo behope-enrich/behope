@@ -16,6 +16,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthOptions;
 import com.google.firebase.auth.PhoneAuthProvider;
@@ -28,6 +29,7 @@ public class VerifyPhoneNo extends AppCompatActivity {
     EditText user_enter_verify_code;
     ProgressBar progressBar;
     String verificationCodeBySystem;
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,10 +67,10 @@ public class VerifyPhoneNo extends AppCompatActivity {
     private void sendVerificationCodeToUser(String phoneno) {
 
 
-        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        mAuth = FirebaseAuth.getInstance();
         PhoneAuthOptions options =
                 PhoneAuthOptions.newBuilder( mAuth ) //  FirebaseAuth.getInstance()
-                        .setPhoneNumber("+91" + phoneno)       // Phone number to verify
+                        .setPhoneNumber("+91"+phoneno)       // Phone number to verify
                         .setTimeout(60L, TimeUnit.SECONDS) // Timeout and unit
                         .setActivity(this)                 // Activity (for callback binding)
                         .setCallbacks(mCallbacks)          // OnVerificationStateChangedCallbacks
@@ -109,11 +111,11 @@ public class VerifyPhoneNo extends AppCompatActivity {
     private void verifyCode(String verificationCode){
         PhoneAuthCredential credential = PhoneAuthProvider.getCredential( verificationCodeBySystem,verificationCode );
 
-        signInUserByCredentioal(credential);
+        signInUserByCredential(credential);
 
     }
 
-    private void signInUserByCredentioal(PhoneAuthCredential credential) {
+    private void signInUserByCredential(PhoneAuthCredential credential) {
 
         FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
 
