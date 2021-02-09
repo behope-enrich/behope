@@ -55,24 +55,36 @@ public class login extends AppCompatActivity {
 
                             for(DataSnapshot d: snapshot.getChildren()){
 
-                                if (d.child("phoneno").getValue().toString().equals( phone.getText().toString() ) && d.child("password").getValue().toString().equals( password.getText().toString())){
-                                    String pn = d.child("phoneno").getValue().toString();
-                                    String pw = d.child( "password" ).getValue().toString();
+                                if (d.child("phoneno").getValue().toString().equals( phone.getText().toString() ) ){
 
-                                    Intent intent = new Intent(getApplicationContext(),HomeActivity.class);
-                                    intent.putExtra( "pn",pn );
-                                    intent.putExtra( "pw",pw );
-                                    startActivity( intent );
-                                    finish();
 
-                                    break;
+                                    if (d.child("password").getValue().toString().equals( password.getText().toString())){
+
+                                        String pn = d.child("phoneno").getValue().toString();
+                                        String pw = d.child( "password" ).getValue().toString();
+
+                                        Intent intent = new Intent(getApplicationContext(),HomeActivity.class);
+                                        intent.putExtra( "pn",pn );
+                                        intent.putExtra( "pw",pw );
+                                        startActivity( intent );
+                                        finish();
+
+                                        break;
+
+                                    }
+                                    else{
+
+                                        Toast.makeText( login.this,"Phone No And Password Is Incorrect",Toast.LENGTH_SHORT ).show();
+
+                                    }
+
                                 }
-                                else{
 
-                                    Toast.makeText( login.this,"Phone No And Password Is Incorrect",Toast.LENGTH_LONG ).show();
 
-                                }
                             }
+
+
+
                         }
 
                         @Override
