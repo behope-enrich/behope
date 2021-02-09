@@ -17,8 +17,12 @@ public class HomeActivity extends AppCompatActivity {
         uname = findViewById( R.id.uname );
 
         String name = getIntent().getStringExtra( "name" );
+        String pn = getIntent().getStringExtra( "pn" );
+        String pw = getIntent().getStringExtra( "pw" );
 
         uname.setText( "Hey "+name +"!" );
+
+        uname.setText( "Hey \n"+ pn +" \n"+pw );
 
     }
 }

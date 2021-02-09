@@ -24,11 +24,11 @@
        />
 
     <TextView
-        android:id="@+id/txtemail"
+        android:id="@+id/txtphoneno"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/nl"
-        android:text="Enter Your E-mail :"
+        android:text="Enter Your Phone No :"
         android:textColor="@color/black"
         android:textSize="15dp"
         android:layout_marginTop="60dp"
@@ -36,14 +36,14 @@
          />
 
         <EditText
-            android:id="@+id/edtxtemail"
+            android:id="@+id/edtxtphoneno"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/nl"
             android:ems="15"
             android:textColor="@color/black"
             android:textSize="15dp"
-            android:inputType="textEmailAddress"
+            android:inputType="number"
             android:layout_marginTop="5dp"
             android:layout_marginLeft="40dp"
             android:layout_marginRight="40dp"

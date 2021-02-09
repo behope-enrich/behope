@@ -5,10 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -21,7 +23,10 @@ public class login extends AppCompatActivity {
 
     TextView txtsignup;
     Button btnlogin;
-    EditText email,password;
+    EditText phone,password;
+
+    FirebaseDatabase rootNode;
+    DatabaseReference reference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,17 +35,54 @@ public class login extends AppCompatActivity {
 
         txtsignup = findViewById( R.id.txtsignup );
         btnlogin = findViewById( R.id.btnlogin);
-        email = findViewById( R.id.edtxtemail );
+        phone = findViewById( R.id.edtxtphoneno );
         password = findViewById( R.id.edtxtpassword );
+
 
         btnlogin.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                signIn();
+
+                //signIn();
+
+                rootNode = FirebaseDatabase.getInstance();
+
+                    reference = rootNode.getReference( "users" );//.child( pn )
+
+                    reference.addValueEventListener( new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                            for(DataSnapshot d: snapshot.getChildren()){
+
+                                if (d.child("phoneno").getValue().toString().equals( phone.getText().toString() ) && d.child("password").getValue().toString().equals( password.getText().toString())){
+                                    String pn = d.child("phoneno").getValue().toString();
+                                    String pw = d.child( "password" ).getValue().toString();
+
+                                    Intent intent = new Intent(getApplicationContext(),HomeActivity.class);
+                                    intent.putExtra( "pn",pn );
+                                    intent.putExtra( "pw",pw );
+                                    startActivity( intent );
+                                    finish();
+
+                                    break;
+                                }
+                                else{
+
+                                    Toast.makeText( login.this,"Phone No And Password Is Incorrect",Toast.LENGTH_LONG ).show();
+
+                                }
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    } );
+
             }
         } );
-
-
 
         txtsignup.setOnClickListener( new View.OnClickListener() {
             @Override
@@ -52,67 +94,4 @@ public class login extends AppCompatActivity {
 
     }
 
-    private void signIn() {
-
-        String userEnterEmail = email.getText().toString().trim();
-        String userEnterPassword = password.getText().toString().trim();
-
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("users");
-
-        Query checkUSer = reference.orderByChild( "name" ).equalTo( userEnterEmail );
-
-        checkUSer.addValueEventListener( new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-
-
-                if(snapshot.exists()){
-
-                    //email.setErrorEnabled(false);
-                    email.setError( null );
-
-
-                    String passwordFromDB = snapshot.child( userEnterEmail).child( "password" ).getValue(String.class);
-
-                    if(passwordFromDB.equals( userEnterPassword )){
-
-                        email.setError( null );
-                        //email.setErrorEnabled(false);
-
-                        String nameFromDB = snapshot.child( userEnterEmail).child( "name" ).getValue(String.class);
-                        String emailFromDB = snapshot.child( userEnterEmail).child( "email" ).getValue(String.class);
-                        String phonenoFromDB = snapshot.child( userEnterEmail).child( "phoneno" ).getValue(String.class);
-
-                    Intent intent = new Intent(getApplicationContext(),HomeActivity.class);
-
-                    intent.putExtra( "name",nameFromDB );
-                    intent.putExtra( "email",emailFromDB );
-                    intent.putExtra( "phoneno",phonenoFromDB );
-
-                    startActivity( intent );
-
-
-                    }
-
-                    else{
-                        password.setError( "Wrong Password" );
-                        password.requestFocus();
-                    }
-
-
-                }
-                else{
-                    email.setError( "No Such Email Exist" );
-                    email.requestFocus();
-                }
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        } );
-
-    }
 }
