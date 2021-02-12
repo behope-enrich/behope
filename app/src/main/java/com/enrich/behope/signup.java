@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -37,6 +38,9 @@ public class signup extends AppCompatActivity {
         rg_signup.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
+
                 rootNode = FirebaseDatabase.getInstance();
                 reference = rootNode.getReference("users");
 
@@ -45,23 +49,35 @@ public class signup extends AppCompatActivity {
                 String phoneno = rg_phoneno.getText().toString();
                 String password = rg_password.getText().toString();
 
-                Intent intent = new Intent(getApplicationContext(),VerifyPhoneNo.class);
-                intent.putExtra( "phoneno",phoneno );
-                intent.putExtra( "name",name );
-                intent.putExtra( "email",email );
-                intent.putExtra( "password",password );
+                if (TextUtils.isEmpty( name )){
+                    rg_name.setError( "Fill Your Name" );
+                }
 
-                startActivity( intent );
-                finish();
+                if (TextUtils.isEmpty( email )){
+                    rg_email.setError( "Fill Your E-mail" );
+                }
 
+                if (TextUtils.isEmpty( phoneno )){
+                    rg_phoneno.setError( "Fill Your Phone Number" );
+                }
 
+                if(TextUtils.isEmpty( password )){
+                    rg_password.setError( "Fill Your Password" );
+                }
 
-                //UserHelperClass helperClass = new UserHelperClass(name,email,phoneno,password);
-                //reference.child(phoneno).setValue(helperClass);
-//
-//                Intent intent = new Intent(getApplicationContext(),HomeActivity.class);
-//
-//                startActivity( intent );
+                if (rg_name != null && rg_email != null && rg_phoneno != null && rg_password != null){
+
+                    Intent intent = new Intent(getApplicationContext(),VerifyPhoneNo.class);
+                    intent.putExtra( "phoneno",phoneno );
+                    intent.putExtra( "name",name );
+                    intent.putExtra( "email",email );
+                    intent.putExtra( "password",password );
+
+                    startActivity( intent );
+                    finish();
+
+                }
+
 
             }
         } );
