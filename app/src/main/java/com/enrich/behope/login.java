@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -43,9 +44,28 @@ public class login extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                //signIn();
+                String chkphoneno = phone.getText().toString();
+                String chkpassword = password.getText().toString();
 
-                rootNode = FirebaseDatabase.getInstance();
+                if (TextUtils.isEmpty( chkphoneno )){
+                    phone.setError( "Fill Your Phone Number" );
+                    phone.requestFocus();
+
+                }
+                else if(phone.length()<10){
+                    phone.setError( "Your Phone Number Is Incorrect" );
+                    phone.requestFocus();
+                }
+
+
+                else if(TextUtils.isEmpty( chkpassword )){
+                    password.setError( "Fill Your Password" );
+                    password.requestFocus();
+                }
+
+                else {
+
+                    rootNode = FirebaseDatabase.getInstance();
 
                     reference = rootNode.getReference( "users" );//.child( pn )
 
@@ -53,28 +73,31 @@ public class login extends AppCompatActivity {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                            for(DataSnapshot d: snapshot.getChildren()){
+                            for (DataSnapshot d : snapshot.getChildren()) {
 
-                                if (d.child("phoneno").getValue().toString().equals( phone.getText().toString() ) ){
+                                if (d.child( "phoneno" ).getValue().toString().equals( phone.getText().toString() )) {
 
 
-                                    if (d.child("password").getValue().toString().equals( password.getText().toString())){
+                                    if (d.child( "password" ).getValue().toString().equals( password.getText().toString() )) {
 
-                                        String pn = d.child("phoneno").getValue().toString();
+                                        String pn = d.child( "phoneno" ).getValue().toString();
                                         String pw = d.child( "password" ).getValue().toString();
 
-                                        Intent intent = new Intent(getApplicationContext(),HomeActivity.class);
-                                        intent.putExtra( "pn",pn );
-                                        intent.putExtra( "pw",pw );
+                                        Intent intent = new Intent( getApplicationContext(), HomeActivity.class );
+                                        intent.putExtra( "pn", pn );
+                                        intent.putExtra( "pw", pw );
                                         startActivity( intent );
                                         finish();
 
                                         break;
 
-                                    }
-                                    else{
+                                    } else {
 
-                                        Toast.makeText( login.this,"Phone No And Password Is Incorrect",Toast.LENGTH_SHORT ).show();
+                                        //Toast.makeText( login.this, "Phone No And Password Is Incorrect", Toast.LENGTH_SHORT ).show();
+                                        //phone.setError( "Fill Your Phone Number" );
+                                        phone.requestFocus();
+                                        password.requestFocus();
+                                        password.setError( "Your Phone Number And Password are Incorrect" );
 
                                     }
 
@@ -84,7 +107,6 @@ public class login extends AppCompatActivity {
                             }
 
 
-
                         }
 
                         @Override
@@ -92,7 +114,7 @@ public class login extends AppCompatActivity {
 
                         }
                     } );
-
+                }
             }
         } );
 

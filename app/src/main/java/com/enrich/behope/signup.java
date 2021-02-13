@@ -49,23 +49,44 @@ public class signup extends AppCompatActivity {
                 String phoneno = rg_phoneno.getText().toString();
                 String password = rg_password.getText().toString();
 
+                String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+
                 if (TextUtils.isEmpty( name )){
                     rg_name.setError( "Fill Your Name" );
+                    rg_name.requestFocus();
                 }
 
-                if (TextUtils.isEmpty( email )){
+                else if(!name.matches("[a-zA-Z ]+")){
+                    rg_name.setError( "Enter Only Alphabetical Character" );
+                    rg_name.requestFocus();
+                }
+
+                else if (TextUtils.isEmpty( email )){
                     rg_email.setError( "Fill Your E-mail" );
+                    rg_email.requestFocus();
                 }
 
-                if (TextUtils.isEmpty( phoneno )){
+                else if(!email.matches(emailPattern)){
+                    rg_email.setError( "Enter Correct Your E-mail" );
+                    rg_email.requestFocus();
+                }
+
+                else if (TextUtils.isEmpty( phoneno )){
                     rg_phoneno.setError( "Fill Your Phone Number" );
+                    rg_phoneno.requestFocus();
+
+                }
+                else if(phoneno.length()<10){
+                        rg_phoneno.setError( "Your Phone Number Is Incorrect" );
+                        rg_phoneno.requestFocus();
                 }
 
-                if(TextUtils.isEmpty( password )){
+                else if(TextUtils.isEmpty( password )){
                     rg_password.setError( "Fill Your Password" );
+                    rg_password.requestFocus();
                 }
 
-                if (rg_name != null && rg_email != null && rg_phoneno != null && rg_password != null){
+                else{
 
                     Intent intent = new Intent(getApplicationContext(),VerifyPhoneNo.class);
                     intent.putExtra( "phoneno",phoneno );
@@ -75,6 +96,7 @@ public class signup extends AppCompatActivity {
 
                     startActivity( intent );
                     finish();
+
 
                 }
 
