@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -31,6 +32,7 @@ public class VerifyPhoneNo extends AppCompatActivity {
     EditText user_enter_verify_code;
     ProgressBar progressBar;
     String verificationCodeBySystem;
+    TextView resend;
 
     FirebaseDatabase rootNode;
     DatabaseReference reference;
@@ -46,12 +48,21 @@ public class VerifyPhoneNo extends AppCompatActivity {
         user_enter_verify_code = findViewById( R.id.user_enter_verify_code );
         progressBar = findViewById( R.id.progressBar );
         progressBar.setVisibility( View.GONE );
-
+        resend = findViewById( R.id.txtresend );
 
         String phoneno = getIntent().getStringExtra( "phoneno" );
-        String name = getIntent().getStringExtra( "name" );
-        String email = getIntent().getStringExtra( "email" );
-        String password = getIntent().getStringExtra( "password" );
+
+        resend.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sendVerificationCodeToUser(phoneno);
+            }
+        } );
+
+
+//        String name = getIntent().getStringExtra( "name" );
+//        String email = getIntent().getStringExtra( "email" );
+//        String password = getIntent().getStringExtra( "password" );
 
 
         sendVerificationCodeToUser(phoneno);
