@@ -159,11 +159,11 @@ public class VerifyPhoneNo extends AppCompatActivity {
 
                             reference.child(phoneno).setValue(helperClass);
 
-                            Intent intent = new Intent(getApplicationContext(),HomeActivity.class);
-                            intent.putExtra( "name",name );
+                            Intent intent = new Intent( getApplicationContext(), login.class );
                             intent.setFlags( Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK );
                             startActivity( intent );
                             finish();
+                            Toast.makeText( getApplicationContext(),"Your Account Create Successfully Plz Login",Toast.LENGTH_SHORT).show();
                         }
 
                         else{
