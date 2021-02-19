@@ -4,11 +4,14 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,11 +23,14 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.HashMap;
+
 public class login extends AppCompatActivity {
 
-    TextView txtsignup;
+    TextView txtsignup,txtremoverqklogin;
     Button btnlogin;
     EditText phone,password;
+    CheckBox chkrememberme;
 
     FirebaseDatabase rootNode;
     DatabaseReference reference;
@@ -38,6 +44,24 @@ public class login extends AppCompatActivity {
         btnlogin = findViewById( R.id.btnlogin);
         phone = findViewById( R.id.edtxtphoneno );
         password = findViewById( R.id.edtxtpassword );
+        chkrememberme = findViewById( R.id.chkrember );
+        txtremoverqklogin = findViewById( R.id.txtremoverqklogin );
+
+        SessionManager rmsessionManager = new SessionManager( login.this,SessionManager.SESSION_REMEMBERME );
+        if (rmsessionManager.checkRememberMe()){
+            HashMap<String,String> rememberMeDetails = rmsessionManager.getRememberMeDetailsFromSession();
+            phone.setText( rememberMeDetails.get( SessionManager.KEY_SESSIONPHONENUMBER ) );
+            password.setText( rememberMeDetails.get( SessionManager.KEY_SESSIONPASSWORD ) );
+        }
+
+        SessionManager sessionManager = new SessionManager( login.this,SessionManager.SESSION_USERSESSION );
+        if(sessionManager.checkLogin()){
+
+            Intent intent = new Intent(login.this,HomeActivity.class);
+            startActivity( intent );
+
+        }
+
 
 
         btnlogin.setOnClickListener( new View.OnClickListener() {
@@ -65,6 +89,7 @@ public class login extends AppCompatActivity {
 
                 else {
 
+
                     rootNode = FirebaseDatabase.getInstance();
 
                     reference = rootNode.getReference( "users" );//.child( pn )
@@ -82,6 +107,17 @@ public class login extends AppCompatActivity {
 
                                         String pn = d.child( "phoneno" ).getValue().toString();
                                         String pw = d.child( "password" ).getValue().toString();
+                                        String un = d.child( "name" ).getValue().toString();
+                                        String em = d.child( "email" ).getValue().toString();
+
+                                        SessionManager sessionManager = new SessionManager( login.this,SessionManager.SESSION_USERSESSION );
+                                        sessionManager.createLoginSession( un,em,pn,pw );
+
+
+                                        if (chkrememberme.isChecked()){
+                                            SessionManager rmsessionManager = new SessionManager( login.this,SessionManager.SESSION_REMEMBERME );
+                                            rmsessionManager.createRememberMeSession( pn,pw );
+                                        }
 
                                         Intent intent = new Intent( getApplicationContext(), HomeActivity.class );
                                         intent.putExtra( "pn", pn );
@@ -123,6 +159,16 @@ public class login extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(login.this,signup.class);
                 startActivity( intent );
+            }
+        } );
+
+        txtremoverqklogin.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SessionManager rmsessionManager = new SessionManager( login.this,SessionManager.SESSION_REMEMBERME );
+                rmsessionManager.logoutUserFromSession();
+                phone.setText( null );
+                password.setText( null );
             }
         } );
 
