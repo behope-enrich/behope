@@ -1,5 +1,6 @@
 package com.enrich.behope;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -11,8 +12,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class signup extends AppCompatActivity {
 
@@ -79,8 +83,66 @@ public class signup extends AppCompatActivity {
                 else if(phoneno.length()<10){
                         rg_phoneno.setError( "Your Phone Number Is Incorrect" );
                         rg_phoneno.requestFocus();
+
+//                    reference.addValueEventListener( new ValueEventListener() {
+//                        @Override
+//                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+//
+//                            for (DataSnapshot d : snapshot.getChildren()) {
+//
+//                                if (d.child( "phoneno" ).getValue().toString().equals( rg_phoneno.getText().toString() )) {
+//
+//
+//                                    rg_phoneno.setError( "This phone number is already in use with another account" );
+//                                    rg_phoneno.requestFocus();
+//
+//                                    break;
+//
+//                                    }
+//                            }
+//                        }
+//
+//                        @Override
+//                        public void onCancelled(@NonNull DatabaseError error) {
+//
+//                        }
+//                    } );
+
+
                 }
 
+//                else if(!phoneno.isEmpty()){
+//
+//
+//                    reference.addValueEventListener( new ValueEventListener() {
+//                        @Override
+//                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+//
+//                            for (DataSnapshot d : snapshot.getChildren()) {
+//
+//                                if (d.child( "phoneno" ).getValue().toString().equals( rg_phoneno.getText().toString() )) {
+//
+//
+//                                    rg_phoneno.setError( "This phone number is already in use with another account" );
+//                                    rg_phoneno.requestFocus();
+//
+//                                    break;
+//
+//                                    }
+//
+//                            }
+//                        }
+//
+//                        @Override
+//                        public void onCancelled(@NonNull DatabaseError error) {
+//
+//                        }
+//                    } );
+//
+//                }
+
+
+                
                 else if(TextUtils.isEmpty( password )){
                     rg_password.setError( "Fill Your Password" );
                     rg_password.requestFocus();
