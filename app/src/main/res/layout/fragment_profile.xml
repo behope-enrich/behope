@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ProfileFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/txtUYP"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/nl"
+        android:text="Update Your Profile"
+        android:textColor="@color/Red"
+        android:textSize="25dp"
+        android:paddingTop="40dp"
+        android:textAlignment="center"
+        />
+
+        <TextView
+            android:id="@+id/txtUName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nl"
+            android:text="Your Name :"
+            android:textColor="@color/black"
+            android:textSize="15dp"
+            android:layout_marginTop="60dp"
+            android:layout_marginLeft="40dp"
+            />
+
+        <EditText
+            android:id="@+id/edttxtUName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nl"
+            android:ems="15"
+            android:textColor="@color/black"
+            android:textSize="15dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            />
+
+<!--        <TextView-->
+<!--            android:id="@+id/txtUPhoneno"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:fontFamily="@font/nl"-->
+<!--            android:text="Your Phone No :"-->
+<!--            android:textColor="@color/black"-->
+<!--            android:textSize="15dp"-->
+<!--            android:layout_marginTop="60dp"-->
+<!--            android:layout_marginLeft="40dp"-->
+<!--            />-->
+
+<!--        <EditText-->
+<!--            android:id="@+id/edtxtUPphoneno"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:fontFamily="@font/nl"-->
+<!--            android:ems="15"-->
+<!--            android:textColor="@color/black"-->
+<!--            android:textSize="15dp"-->
+<!--            android:inputType="number"-->
+<!--            android:layout_marginTop="5dp"-->
+<!--            android:layout_marginLeft="40dp"-->
+<!--            android:layout_marginRight="40dp"-->
+<!--            />-->
+
+
+<!--        <TextView-->
+<!--            android:id="@+id/txtUEmail"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:fontFamily="@font/nl"-->
+<!--            android:text="Your E-mail :"-->
+<!--            android:textColor="@color/black"-->
+<!--            android:textSize="15dp"-->
+<!--            android:layout_marginTop="60dp"-->
+<!--            android:layout_marginLeft="40dp"-->
+<!--            />-->
+
+<!--        <EditText-->
+<!--            android:id="@+id/edtxtUEmail"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:fontFamily="@font/nl"-->
+<!--            android:ems="15"-->
+<!--            android:textColor="@color/black"-->
+<!--            android:textSize="15dp"-->
+<!--            android:layout_marginTop="5dp"-->
+<!--            android:layout_marginLeft="40dp"-->
+<!--            android:layout_marginRight="40dp"-->
+<!--            />-->
+
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</FrameLayout>
