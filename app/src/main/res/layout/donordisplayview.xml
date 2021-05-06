@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="5dp"
+    android:padding="40dp"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/txtDname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/nb"
+        android:textColor="@color/Red"
+        android:textSize="16dp"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
+        android:text="Name" />
+
+
+    <TextView
+        android:id="@+id/txtDBDGroop"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/nb"
+        android:textColor="@color/Red"
+        android:textSize="16dp"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
+        android:text="Blood Group" />
+
+    <TextView
+        android:id="@+id/txtDGender"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/nb"
+        android:textColor="@color/Red"
+        android:textSize="16dp"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
+        android:text="Gender" />
+
+    <TextView
+        android:id="@+id/txtDLstDt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/nb"
+        android:textColor="@color/Red"
+        android:textSize="16dp"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
+        android:text="Donate Last Date" />
+
+    <TextView
+        android:id="@+id/txtDphone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/nb"
+        android:textColor="@color/Red"
+        android:textSize="16dp"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
+        android:text="Phone Number" />
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

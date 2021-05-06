@@ -16,6 +16,9 @@ import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
 
 import java.util.HashMap;
 
+import kotlin.Unit;
+import kotlin.jvm.functions.Function1;
+
 public class HomeActivity extends AppCompatActivity {
 
 //    TextView uname,session;
@@ -64,6 +67,11 @@ public class HomeActivity extends AppCompatActivity {
 //        } );
 //
 
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace( R.id.frame_layout, new HomeFragment() )
+                .commit();
+
         HomeUserName = findViewById( R.id.txtHomeUserName );
         String name = getIntent().getStringExtra( "name" );
 
@@ -77,9 +85,24 @@ public class HomeActivity extends AppCompatActivity {
         bottomNavigation.setOnShowListener( new MeowBottomNavigation.ShowListener() {
             @Override
             public void onShowItem(MeowBottomNavigation.Model item) {
+
+
+
+            }
+        } );
+
+
+
+        bottomNavigation.show( 1,true );
+
+        bottomNavigation.setOnClickMenuListener( new MeowBottomNavigation.ClickListener() {
+            @Override
+            public void onClickItem(MeowBottomNavigation.Model item) {
+
                 Fragment fragment=null;
 
                 switch (item.getId()){
+
                     case 1:
                         fragment = new HomeFragment();
                         break;
@@ -88,25 +111,13 @@ public class HomeActivity extends AppCompatActivity {
                         //fragment = new ProfileFragment();
                         fragment = new ProfileFragment();
                         break;
-
-
                 }
                 loadFragment(fragment);
+
             }
         } );
 
-        //bottomNavigation.setCount( 1,"10" );
 
-        bottomNavigation.show( 2,true );
-
-        bottomNavigation.setOnClickMenuListener( new MeowBottomNavigation.ClickListener() {
-            @Override
-            public void onClickItem(MeowBottomNavigation.Model item) {
-//                Toast.makeText( getApplicationContext()
-//                ,"You Clicked" + item.getId()
-//                ,Toast.LENGTH_SHORT).show();
-            }
-        } );
 
         bottomNavigation.setOnReselectListener( new MeowBottomNavigation.ReselectListener() {
             @Override
@@ -114,10 +125,14 @@ public class HomeActivity extends AppCompatActivity {
 //                Toast.makeText( getApplicationContext()
 //                ,"You Reslected" + item.getId()
 //                ,Toast.LENGTH_SHORT).show();
+
             }
         } );
 
+
     }
+
+
 
     private void loadFragment(Fragment fragment) {
         getSupportFragmentManager()
@@ -125,5 +140,10 @@ public class HomeActivity extends AppCompatActivity {
                 .replace( R.id.frame_layout,fragment )
                 .commit();
     }
+
+
+
+
+
 
 }

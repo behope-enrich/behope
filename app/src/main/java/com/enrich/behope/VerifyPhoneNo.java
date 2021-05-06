@@ -152,10 +152,16 @@ public class VerifyPhoneNo extends AppCompatActivity {
                             String password = getIntent().getStringExtra( "password" );
                             String phoneno = getIntent().getStringExtra( "phoneno" );
 
+                            String donate = getIntent().getStringExtra( "donate" );
+                            String blood_group = getIntent().getStringExtra( "blood_group" );
+                            String age = getIntent().getStringExtra( "age" );
+                            String gender = getIntent().getStringExtra( "gender" );
+                            String last_donated_date = getIntent().getStringExtra( "last_donated_date" );
+
                             rootNode = FirebaseDatabase.getInstance();
                             reference = rootNode.getReference("users");
 
-                            UserHelperClass helperClass = new UserHelperClass(name,email,phoneno,password);
+                            UserHelperClass helperClass = new UserHelperClass(name,email,phoneno,password,donate,blood_group,age,gender,last_donated_date);
 
                             reference.child(phoneno).setValue(helperClass);
 

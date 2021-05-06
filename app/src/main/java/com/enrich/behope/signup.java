@@ -52,6 +52,11 @@ public class signup extends AppCompatActivity {
                 String email = rg_email.getText().toString();
                 String phoneno = rg_phoneno.getText().toString();
                 String password = rg_password.getText().toString();
+                String donate = "false";
+                String blood_group = "Not Sure";
+                String age = "undefined";
+                String gender = "undefined";
+                String last_donated_date = "Clicke here to Select Date";
 
                 String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
 
@@ -149,22 +154,19 @@ public class signup extends AppCompatActivity {
                 }
 
                 else{
-
                     Intent intent = new Intent(getApplicationContext(),VerifyPhoneNo.class);
                     intent.putExtra( "phoneno",phoneno );
                     intent.putExtra( "name",name );
                     intent.putExtra( "email",email );
                     intent.putExtra( "password",password );
-
+                    intent.putExtra( "donate",donate );
+                    intent.putExtra( "blood_group",blood_group );
+                    intent.putExtra( "age",age );
+                    intent.putExtra( "gender",gender );
+                    intent.putExtra( "last_donated_date",last_donated_date );
                     startActivity( intent );
                     finish();
-
-
-
-
                 }
-
-
             }
         } );
 

@@ -3,12 +3,38 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".HomeFragment">
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp"
+    tools:context=".HomeFragment"
+    android:background="@color/white"
+    >
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Home Fragment" />
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/nb"
+        android:textColor="@color/Red"
+        android:textSize="16dp"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
+        android:text="Blood Donor List" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="65dp"
+        >
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/donorRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        />
+
+    </LinearLayout>
+
+
 
 </FrameLayout>

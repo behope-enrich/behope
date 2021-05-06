@@ -76,6 +76,16 @@
             android:layout_marginRight="40dp"
             />
 
+        <ProgressBar
+            android:id="@+id/progressLogin"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="20dp"
+            android:visibility="gone"
+            />
+
+
         <Button
             android:id="@+id/btnlogin"
             android:layout_width="match_parent"

@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,6 +33,8 @@ public class login extends AppCompatActivity {
     EditText phone,password;
     CheckBox chkrememberme;
 
+    ProgressBar progressLogin;
+
     FirebaseDatabase rootNode;
     DatabaseReference reference;
 
@@ -46,6 +49,7 @@ public class login extends AppCompatActivity {
         password = findViewById( R.id.edtxtpassword );
         chkrememberme = findViewById( R.id.chkrember );
         txtremoverqklogin = findViewById( R.id.txtremoverqklogin );
+        progressLogin = findViewById( R.id.progressLogin );
 
         SessionManager rmsessionManager = new SessionManager( login.this,SessionManager.SESSION_REMEMBERME );
         if (rmsessionManager.checkRememberMe()){
@@ -67,6 +71,8 @@ public class login extends AppCompatActivity {
         btnlogin.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                progressLogin.setVisibility( View.VISIBLE );
 
                 String chkphoneno = phone.getText().toString();
                 String chkpassword = password.getText().toString();
@@ -109,9 +115,14 @@ public class login extends AppCompatActivity {
                                         String pw = d.child( "password" ).getValue().toString();
                                         String un = d.child( "name" ).getValue().toString();
                                         String em = d.child( "email" ).getValue().toString();
+                                        String donate = d.child( "donate" ).getValue().toString();
+                                        String blood_group = d.child( "blood_group" ).getValue().toString();
+                                        String age = d.child( "age" ).getValue().toString();
+                                        String gender = d.child( "gender" ).getValue().toString();
+                                        String last_donated_date = d.child( "last_donated_date" ).getValue().toString();
 
                                         SessionManager sessionManager = new SessionManager( login.this,SessionManager.SESSION_USERSESSION );
-                                        sessionManager.createLoginSession( un,em,pn,pw );
+                                        sessionManager.createLoginSession( un,em,pn,pw,donate,blood_group,age,gender,last_donated_date );
 
 
                                         if (chkrememberme.isChecked()){
@@ -124,6 +135,8 @@ public class login extends AppCompatActivity {
                                         intent.putExtra( "pw", pw );
                                         startActivity( intent );
                                         finish();
+
+                                        progressLogin.setVisibility( View.GONE );
 
                                         break;
 

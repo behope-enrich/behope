@@ -93,6 +93,9 @@
         app:mbn_selectedIconColor="@color/Dark_Red"
         app:mbn_countBackgroundColor="@color/blue"
         app:mbn_defaultIconColor="@color/white"
-        app:mbn_backgroundBottomColor="@color/Dark_Red"/>
+        app:mbn_backgroundBottomColor="@color/Dark_Red"
+
+
+        />
 
 </LinearLayout>

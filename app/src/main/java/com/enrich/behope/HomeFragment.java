@@ -1,12 +1,28 @@
 package com.enrich.behope;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ProgressBar;
+import android.widget.Toast;
+
+//import com.enrich.behope.ui.login.model;
+//import com.enrich.behope.ui.login.myadapter;
+import com.enrich.behope.ui.login.dmodel;
+import com.enrich.behope.ui.login.dmyadapter;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -14,6 +30,18 @@ import android.view.ViewGroup;
  * create an instance of this fragment.
  */
 public class HomeFragment extends Fragment {
+
+    RecyclerView donorRecyclerView;
+
+    //myadapter adapter2;
+    dmyadapter adapter;
+
+    Button btncall;
+
+    //ProgressBar homeProgress;
+
+    FirebaseDatabase rootNode;
+    DatabaseReference reference;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -59,6 +87,42 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate( R.layout.fragment_home, container, false );
+        View v = inflater.inflate( R.layout.fragment_home, container, false );
+
+        donorRecyclerView = v.findViewById( R.id.donorRecyclerView );
+        donorRecyclerView.setLayoutManager( new LinearLayoutManager( v.getContext() ) );
+
+        //homeProgress = v.findViewById( R.id.progressHome );
+        //homeProgress.setVisibility( View.VISIBLE );
+
+        btncall = v.findViewById( R.id.btncall );
+
+        FirebaseRecyclerOptions<dmodel> options =
+                new FirebaseRecyclerOptions.Builder<dmodel>()
+                        .setQuery(FirebaseDatabase.getInstance().getReference().child("blood_donors"), dmodel.class)
+                        .build();
+
+
+
+        adapter = new dmyadapter( options );
+        donorRecyclerView.setAdapter( adapter );
+
+        //homeProgress.setVisibility( View.GONE );
+
+        return v;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        adapter.startListening();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        adapter.stopListening();
+
     }
 }
+
